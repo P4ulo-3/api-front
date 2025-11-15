@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   async function FetchUser() {
     try {
@@ -87,12 +89,12 @@ export default function Users() {
                 </td>
 
                 <td className="text-right px-6 whitespace-nowrap">
-                  <a
-                    href="javascript:void()"
+                  <button
+                    onClick={() => navigate(`/editar/${user.id}`)}
                     className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
                   >
                     Edit
-                  </a>
+                  </button>
                   <button
                     onClick={() => deleteUse(user.id, user.nome)}
                     className="cursor-pointer py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
